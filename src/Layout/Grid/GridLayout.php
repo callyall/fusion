@@ -40,4 +40,16 @@ class GridLayout extends AbstractContainerTag implements Component
     $enable ? $this->addModifier('auto-fit') : $this->removeModifier('auto-fit');
     return $this;
   }
+
+  /**
+   * Set the number of cells width
+   *
+   * @param null|int $cells Available Options (4, 6, 8 12), Null for device-default
+   *
+   * @return GridLayout
+   */
+  public function setFixed($cells = null)
+  {
+    return $this->addModifier('f' . ($cells >= 4 ? $cells : ''));
+  }
 }

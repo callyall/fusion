@@ -56,4 +56,9 @@ class GridCell extends Div implements Component
   {
     return $this->addModifier(self::ALIGN_BOTTOM);
   }
+
+  public function span(int $columns)
+  {
+    return $this->addModifier($columns);
+  }
 }

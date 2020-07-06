@@ -3,6 +3,7 @@ namespace PackagedUi\FusionDemo\Elements;
 
 use Packaged\Dispatch\ResourceManager;
 use Packaged\Glimpse\Tags\LineBreak;
+use Packaged\Glimpse\Tags\Text\HeadingTwo;
 use PackagedUi\FontAwesome\FaIcon;
 use PackagedUi\Fusion\Layout\Grid\GridCell;
 use PackagedUi\Fusion\Layout\Grid\GridInner;
@@ -33,15 +34,15 @@ class GridDemo extends AbstractDemoPage
     
     .grid__cell{
       background: rgba(0,0,0,.2);
-      min-height: 100px;
+      min-height: 20px;
     }
     
     .alignment-demo, .alignment-demo .grid__inner{
-      min-height: 200px;
+      min-height: 20px;
     }
     
     .alignment-demo .grid__cell{
-      min-height: 50px;
+      min-height: 20px;
       max-height: 50px;
     }
     "
@@ -52,7 +53,7 @@ class GridDemo extends AbstractDemoPage
   {
     $return = [];
 
-    $return[] = GridLayout::createWithInner(
+    $twelve = [
       GridCell::create("ONE"),
       GridCell::create("TWO"),
       GridCell::create("THREE"),
@@ -64,11 +65,70 @@ class GridDemo extends AbstractDemoPage
       GridCell::create("NINE"),
       GridCell::create("TEN"),
       GridCell::create("ELEVEN"),
-      GridCell::create("TWELVE")
+      GridCell::create("TWELVE"),
+    ];
+    $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Default Grid");
+    $return[] = GridLayout::createWithInner(...$twelve);
+
+    $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Default Grid Span Columns");
+    $return[] = GridLayout::createWithInner(
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("THREE")->span(3),
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("THREE")->span(3)
     );
 
     $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Fixed Grid");
+    $return[] = GridLayout::createWithInner(...$twelve)->setFixed();
 
+    $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Fixed Grid 4");
+    $return[] = GridLayout::createWithInner(...$twelve)->setFixed(4);
+
+    $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Fixed Grid 6");
+    $return[] = GridLayout::createWithInner(...$twelve)->setFixed(6);
+
+    $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Fixed Grid 8");
+    $return[] = GridLayout::createWithInner(...$twelve)->setFixed(8);
+
+    $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Fixed Grid 12");
+    $return[] = GridLayout::createWithInner(...$twelve)->setFixed(12);
+
+    $return[] = LineBreak::create();
+    $return[] = HeadingTwo::create("Fixed Grid Span Columns");
+    $return[] = GridLayout::createWithInner(
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("THREE")->span(3),
+      GridCell::create("FOUR")->span(4)
+    )->setFixed();
+    $return[] = LineBreak::create();
+    $return[] = GridLayout::createWithInner(
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("THREE")->span(3),
+      GridCell::create("ONE")->span(1),
+      GridCell::create("TWO")->span(2),
+      GridCell::create("THREE")->span(3)
+    )->setFixed();
+
+    $return[] = LineBreak::create();
     $return[] = GridLayout::createWithInner(
       GridCell::create("ONE"),
       GridCell::create("TWO")
